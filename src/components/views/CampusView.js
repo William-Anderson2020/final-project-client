@@ -10,9 +10,22 @@ import { Link } from "react-router-dom";
 const CampusView = (props) => {
   const {campus} = props;
   
+
+  let img = "";
+  if(campus.img !== null){
+    img=(
+      <div>
+        <br/>
+        <img src={campus.img} alt={`${campus.name}`} style={{maxWidth:'30%'}}/>
+        <br/>  
+      </div>
+    );
+  }
+
   // Render a single Campus view with list of its students
   return (
     <div>
+      {img}
       <h1>{campus.name}</h1>
       <p>{campus.address}</p>
       <p>{campus.description}</p>
