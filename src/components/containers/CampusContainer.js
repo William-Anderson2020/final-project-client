@@ -9,7 +9,6 @@ import Header from './Header';
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchCampusThunk, deleteCampusThunk, updateStudentCampusThunk} from "../../store/thunks";
-
 import { CampusView } from "../views";
 
 class CampusContainer extends Component {
@@ -17,6 +16,18 @@ class CampusContainer extends Component {
   componentDidMount() {
     // Get campus ID from URL (API link)
     this.props.fetchCampus(this.props.match.params.id);
+  }
+
+  handleRemoval = async (e, id) => {
+    e.preventDefault();
+    await this.props.updateCampus([id, null]);
+    window.location.reload();
+  }
+
+  handleUpdate = async e =>{
+    e.preventDefault()
+    await this.props.updateCampus([e.target.id.value, this.props.campus.id]);
+    window.location.reload();
   }
 
   // Render a Campus view by passing campus data as props to the corresponding View component
@@ -28,6 +39,8 @@ class CampusContainer extends Component {
           campus={this.props.campus}
           deleteCampus={this.props.deleteCampus}
           updateCampus={this.props.updateCampus}
+          handleUpdate={this.handleUpdate}
+          handleRemoval={this.handleRemoval}
         />
       </div>
     );

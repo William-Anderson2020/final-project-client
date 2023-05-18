@@ -9,7 +9,7 @@ import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
 // Take in props data to construct the component
 const CampusView = (props) => {
-  const {campus, deleteCampus, updateCampus} = props;
+  const {campus, deleteCampus, handleUpdate, handleRemoval} = props;
   
   if(campus == null){
     return(
@@ -38,7 +38,7 @@ const CampusView = (props) => {
             <h2>{name}</h2>
           </Link>
           <Link to={`/campus/${campus.id}`}>
-            <button onClick={() => updateCampus([student.id, null])}>Remove from campus</button>     
+            <button onClick={e => handleRemoval(e, student.id)}>Remove from campus</button>     
           </Link>
           
           <hr style={{width: '30%'}}/>
@@ -65,7 +65,7 @@ const CampusView = (props) => {
       <Link to={`/newstudent`}>
         <button type="button">Create new student</button>  
       </Link>
-      <form onSubmit={(data) => {data.preventDefault(); updateCampus([data.target.id.value, campus.id]);}}>
+      <form onSubmit={e => handleUpdate(e)}>
         <label style= {{color:'#11153e', fontWeight: 'bold'}}>Add Student: </label>
         <input type="text" name="id" required/>
         <input type="submit"></input>
