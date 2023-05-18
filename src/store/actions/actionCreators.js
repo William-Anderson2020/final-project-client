@@ -20,6 +20,13 @@ export const addCampus = (campus) => {
   };
 };
 
+export const editCampus = (campus) => {
+  return {
+    type: at.EDIT_CAMPUS,
+    payload: campus,
+  };
+};
+
 export const deleteCampus = (campusId) =>{
   return {
     type: at.DELETE_CAMPUS,
