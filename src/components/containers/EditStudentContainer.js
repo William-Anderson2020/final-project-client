@@ -21,6 +21,7 @@ class EditStudentContainer extends Component {
     //getting student ID from url
     this.props.fetchStudent(this.props.match.params.id);
   }
+
   // Initialize state
   constructor(props){
     super(props);
@@ -103,6 +104,11 @@ class EditStudentContainer extends Component {
 
   // Render edit student input form
   render() {
+
+    if(this.props.student == null){
+      return <Redirect to={`/students`}/>
+    }
+
     // Redirect to student's page after submit
     if(this.state.redirect) {
       return (<Redirect to={`/student/${this.state.id}`}/>)

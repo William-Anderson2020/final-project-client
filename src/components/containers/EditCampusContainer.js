@@ -90,6 +90,10 @@ class EditCampusContainer extends Component {
 
   // Render edit campus input form
   render() {
+    if(this.props.campus == null){
+      return <Redirect to={`/campuses`}/>
+    }
+
     // Redirect to campus's page after submit
     if(this.state.redirect) {
       return (<Redirect to={`/campus/${this.state.id}`}/>)

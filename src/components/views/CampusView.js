@@ -9,7 +9,7 @@ import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
 // Take in props data to construct the component
 const CampusView = (props) => {
-  const {campus, deleteCampus} = props;
+  const {campus, deleteCampus, updateCampus} = props;
   
   if(campus == null){
     return(
@@ -34,9 +34,12 @@ const CampusView = (props) => {
       let name = student.firstname + " " + student.lastname;
       students = (
         <div key={student.id}>
+          <h1>Students:</h1>
           <Link to={`/student/${student.id}`}>
             <h2>{name}</h2>
-          </Link>             
+          </Link>
+          <button onClick={() => updateCampus([student.id, 0])}>Remove from campus</button>   
+          <hr style={{width: '30%'}}/>
         </div>
       );
     })
@@ -56,6 +59,13 @@ const CampusView = (props) => {
         <button onClick={() => deleteCampus(campus.id)}>Delete</button>
       </Link>
       {students}
+      <Link to={`/newstudent`}>
+        <button type="button">Create new student</button>  
+      </Link>
+      {/* <form >
+        <label style= {{color:'#11153e', fontWeight: 'bold'}}>First Name: </label>
+        <input type="text" name="firstname" onChange ={(e) => handleChange(e)} required/>
+      </form> */}
     </div>
   );
 };
