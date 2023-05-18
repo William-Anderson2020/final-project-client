@@ -21,7 +21,7 @@ class NewCampusContainer extends Component {
       name: "", 
       address: "", 
       description: "",
-      img: "", 
+      img: null, 
       redirect: false, 
       redirectId: null
     };
@@ -41,9 +41,12 @@ class NewCampusContainer extends Component {
     let campus = {
         name: this.state.name,
         address: this.state.address,
-        description: this.state.description,
-        img: this.state.img
+        description: this.state.description
     };
+
+    if(this.state.img){
+      campus.img = this.state.img;
+    }
     
     // Add new campus in back-end database
     let newCampus = await this.props.addCampus(campus);
@@ -53,7 +56,7 @@ class NewCampusContainer extends Component {
       name: "",
       address: "",
       description: "",
-      imageURL: "",
+      img: null,
       redirect: true, 
       redirectId: newCampus.id
     });
