@@ -56,27 +56,27 @@ class EditStudentContainer extends Component {
         id: this.props.student.id
     };
 
-    if(edits.firstname == null || edits.firstname == ""){
+    if(edits.firstname === null || edits.firstname === ""){
       edits.firstname = this.props.student.firstname;
     };
 
-    if(edits.lastname == null || edits.lastname == ""){
+    if(edits.lastname === null || edits.lastname === ""){
       edits.lastname = this.props.student.lastname;
     };
 
-    if(edits.email == null || edits.email == ""){
+    if(edits.email === null || edits.email === ""){
       edits.email = this.props.student.email;
     };
 
-    if(edits.gpa == null){
+    if(edits.gpa === null){
       edits.gpa = this.props.student.gpa;
     };
 
-    if(edits.campusId == null){
+    if(edits.campusId === null){
       edits.campusId = this.props.student.campusId;
     };
 
-    if(this.state.imageURL == null || this.state.imageURL == ""){
+    if(this.state.imageURL === null){
       edits.imageURL = this.props.student.imageURL;
     }
     

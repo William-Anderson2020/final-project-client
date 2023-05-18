@@ -1,5 +1,5 @@
 /*==================================================
-NewStudentContainer.js
+EditCampusContainer.js
 
 The Container component is responsible for stateful logic and data fetching, and
 passes data (if any) as props to the corresponding View component.
@@ -53,19 +53,19 @@ class EditCampusContainer extends Component {
         id: this.props.campus.id
     };
 
-    if(edits.name == null || edits.name == ""){
+    if(edits.name === null || edits.name === ""){
       edits.name = this.props.campus.name;
     };
 
-    if(edits.address == null || edits.address == ""){
+    if(edits.address === null || edits.address === ""){
       edits.address = this.props.campus.address;
     };
 
-    if(edits.description == null || edits.description == ""){
+    if(edits.description === null || edits.description === ""){
       edits.description = this.props.campus.description;
     };
     
-    if(this.state.img == null || this.state.img == ""){
+    if(this.state.img === null || this.state.img === ""){
       edits.img = this.props.campus.img;
     }
     
@@ -88,9 +88,9 @@ class EditCampusContainer extends Component {
       this.setState({redirect: false, redirectId: null});
   }
 
-  // Render edit student input form
+  // Render edit campus input form
   render() {
-    // Redirect to student's page after submit
+    // Redirect to campus's page after submit
     if(this.state.redirect) {
       return (<Redirect to={`/campus/${this.state.id}`}/>)
     }
@@ -111,10 +111,10 @@ class EditCampusContainer extends Component {
 
 const mapState = (state) => {
   return {
-    campus: state.campus,  // Get the State object from Reducer "student"
+    campus: state.campus,  // Get the State object from Reducer "campus"
   };
 };
-// The following input argument is passed to the "connect" function used by "EditStudentContainer" component to connect to Redux Store.
+// The following input argument is passed to the "connect" function used by "EditCampusContainer" component to connect to Redux Store.
 // The "mapDispatch" argument is used to dispatch Action (Redux Thunk) to Redux Store.
 // The "mapDispatch" calls the specific Thunk to dispatch its action. The "dispatch" is a function of Redux Store.
 const mapDispatch = (dispatch) => {
