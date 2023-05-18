@@ -30,15 +30,17 @@ const CampusView = (props) => {
 
   let students = <h3>No associated students.</h3>
   if(campus.students.length > 0){
-    campus.students.map( student => {
+    students = campus.students.map( student => {
       let name = student.firstname + " " + student.lastname;
-      students = (
+      return (
         <div key={student.id}>
-          <h1>Students:</h1>
           <Link to={`/student/${student.id}`}>
             <h2>{name}</h2>
           </Link>
-          <button onClick={() => updateCampus([student.id, 0])}>Remove from campus</button>   
+          <Link to={`/campus/${campus.id}`}>
+            <button onClick={() => updateCampus([student.id, null])}>Remove from campus</button>     
+          </Link>
+          
           <hr style={{width: '30%'}}/>
         </div>
       );
@@ -58,14 +60,16 @@ const CampusView = (props) => {
       <Link to={`/campuses`}>
         <button onClick={() => deleteCampus(campus.id)}>Delete</button>
       </Link>
+      <h1>Students:</h1>
       {students}
       <Link to={`/newstudent`}>
         <button type="button">Create new student</button>  
       </Link>
-      {/* <form >
-        <label style= {{color:'#11153e', fontWeight: 'bold'}}>First Name: </label>
-        <input type="text" name="firstname" onChange ={(e) => handleChange(e)} required/>
-      </form> */}
+      <form onSubmit={(data) => {data.preventDefault(); updateCampus([data.target.id.value, campus.id]);}}>
+        <label style= {{color:'#11153e', fontWeight: 'bold'}}>Add Student: </label>
+        <input type="text" name="id" required/>
+        <input type="submit"></input>
+      </form>
     </div>
   );
 };

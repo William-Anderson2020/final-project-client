@@ -149,9 +149,8 @@ export const updateStudentCampusThunk = ids => async dispatch => {
   try{
     let student = await axios.get(`/api/students/${ids[0]}`);
     student.data.campusId = ids[1];
-    student = student.data
-    alert(student.firstname)
-    let updatedStudent = await axios.put(`/api/students/${ids[0]}`, student); 
+    let data = student.data
+    let updatedStudent = await axios.put(`/api/students/${data.id}`, data); 
     dispatch(ac.editStudent(updatedStudent));
   }catch(err){
     console.error(err);
